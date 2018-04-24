@@ -18,8 +18,8 @@ def delta_prep(date, dir):
 
 print("Привет! Это программа подготовки новых SWIFT файлов для BF Midas.")
 print()
-for roots, dirs, files in os.walk(os.getcwd()):
-	for dir in dirs:
+for dir in os.listdir(os.getcwd()):
+	if os.path.isdir(dir) and dir[:8] == 'SWIFTRef':
 		date = dir[41:]
 		print('Обнаружены следующие файлы: ',  dir)
 print()
