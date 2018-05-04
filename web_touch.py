@@ -8,7 +8,7 @@ import time
 
 binary = FirefoxBinary(r'C:\Program Files (x86)\Mozilla Firefox\firefox.exe')
 
-# driver = webdriver.Firefox(firefox_binary=binary)
+driver = webdriver.Firefox(firefox_binary=binary)
 driver.get('http://intranet.raiffeisen.ru/grandprix/form.aspx')
 # inputElement = driver.find_element_by_id("gp_company_user")
 # inputElement.send_keys('Карпова Ирина Евгеньевна')

@@ -7,6 +7,7 @@ dest = 'C:\\temp\\MC\\{}\\'.format(datetime.date.today().year)
 # source = 'C:\\Pelikan\\IPM\\Receive'
 # dest = 'V:\\MasterCard\\Files_MC\\{}\\'.format(datetime.date.today().year)
 topday = []
+new_files = []
 
 def workwork(file, day):
 	if p.isdir(dest): 
@@ -18,15 +19,18 @@ def workwork(file, day):
 				else: return 'Skipped'
 			else: 
 				shutil.copyfile(p.join(source,file), p.join(dest,day,file))
+				new_files.append(file)
 				return 'New! Saved'
 		else:
 			os.mkdir(p.join(dest, day))
 			shutil.copyfile(p.join(source,file), p.join(dest,day,file))
+			new_files.append(file)
 			return 'New! Saved'
 	else:
 		os.mkdir(dest)
 		os.mkdir(p.join(dest, day))
 		shutil.copyfile(p.join(source,file), p.join(dest,day,file))
+		new_files.append(file)
 		return 'New! Saved'		
 
 def arch(day):
@@ -42,8 +46,8 @@ def report(list, numb):
 	msg = EmailMessage()
 	msg['Subject'] = 'MC incoming files transfer: {} new files'.format(numb)
 	msg['From'] = 'ftrans@raiffeisen.ru'
-	msg['To'] = 'Anton.Nenesku@raiffeisen.ru'
-	msg.set_content('Ni hao!\n\n{}\n\nЧмоки!'.format(', '.join(list)))
+	msg['To'] = ('Anton.Nenesku@raiffeisen.ru')
+	msg.set_content('Nihao!\n\nNew files received:\n{}\n\nDo not reply on this message!'.format('\n'.join(list)))
 	with smtplib.SMTP('smtp.raiffeisen.ru') as s: s.send_message(msg)
 		
 def checkf(e):
@@ -83,6 +87,6 @@ for i in os.listdir(dest):
 topday.sort()
 for i in topday[:-7]: arch(new_day(str(i)))
 
-# if len(topday) > 0: report(topday, len(topday))
+if len(new_files) > 0: report(new_files, len(new_files))
 
 input('Все хорошо! Пока! <Жми Enter...>')
