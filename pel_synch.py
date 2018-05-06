@@ -39,8 +39,8 @@ def arch(day):
 def report(list, numb):
 	msg = EmailMessage()
 	msg['Subject'] = 'MasterCard incoming files transfer: {} new file[s]'.format(numb)
-	msg['From'] = 'ftrans@raiffeisen.ru'
-	msg['To'] = ('Anton.Nenesku@raiffeisen.ru')
+	msg['From'] = ''
+	msg['To'] = ('')
 	msg.set_content('Good day!\n\nNew files received:\n{}\n\n\n\n\n\n\nDo not reply on this message!'.format('\n'.join(list)))
 	# with smtplib.SMTP('smtp.raiffeisen.ru') as s: s.send_message(msg)
 	print('Nihao!\n\nNew files received:\n{}\n\nDo not reply on this message!'.format('\n'.join(list)))
