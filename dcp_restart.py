@@ -4,9 +4,8 @@ message = []
 msg = EmailMessage()
 msg['Subject'] = 'DCPMAINEOM restart log'
 msg['From'] = 'DCPMAINEOM@raiffeisen.ru'
-msg['To'] = ('Anton.Nenesku@raiffeisen.ru')
-# msg['To'] = ('Anton.Nenesku@raiffeisen.ru','OFEDOROV@raiffeisen.ru', 'Aleksey.SEMENNIKOV@raiffeisen.ru')
-ftp = ftplib.FTP('RUAAS01')
+msg['To'] = ('???@????.??')
+ftp = ftplib.FTP('????')
 message.append(ftp.login('test','test'))
 try:
 	message.append(ftp.sendcmd('rcmd ENDJOB JOB(DCPMAINEOM)'))
